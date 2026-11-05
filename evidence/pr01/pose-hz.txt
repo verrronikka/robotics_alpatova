@@ -1,26 +1,22 @@
-average rate: 62.462
-	min: 0.015s max: 0.016s std dev: 0.00038s window: 61
-average rate: 62.500
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 124
-average rate: 62.487
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 186
+average rate: 62.518
+	min: 0.015s max: 0.018s std dev: 0.00051s window: 64
+average rate: 62.489
+	min: 0.014s max: 0.018s std dev: 0.00059s window: 127
+average rate: 62.497
+	min: 0.014s max: 0.018s std dev: 0.00055s window: 190
+average rate: 62.493
+	min: 0.014s max: 0.018s std dev: 0.00057s window: 253
+average rate: 62.512
+	min: 0.014s max: 0.018s std dev: 0.00057s window: 316
 average rate: 62.505
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 249
-average rate: 62.501
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 311
-average rate: 62.496
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 374
+	min: 0.014s max: 0.018s std dev: 0.00058s window: 379
+average rate: 62.504
+	min: 0.014s max: 0.018s std dev: 0.00058s window: 442
+average rate: 62.502
+	min: 0.014s max: 0.018s std dev: 0.00058s window: 505
 average rate: 62.500
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 436
+	min: 0.014s max: 0.018s std dev: 0.00058s window: 568
 average rate: 62.503
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 499
-average rate: 62.497
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 561
-average rate: 62.500
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 624
-average rate: 62.499
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 686
-average rate: 62.497
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 749
-average rate: 62.497
-	min: 0.015s max: 0.016s std dev: 0.00040s window: 811
+	min: 0.014s max: 0.018s std dev: 0.00058s window: 631
+Command exited with non-zero status 124
+elapsed_seconds=12.16 exit=124
