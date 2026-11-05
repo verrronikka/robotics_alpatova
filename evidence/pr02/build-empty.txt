@@ -1,4 +1,0 @@
-Starting >>> turtle_bringup
-Finished <<< turtle_bringup [1.71s]
-
-Summary: 1 package finished [1.94s]
