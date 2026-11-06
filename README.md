@@ -137,3 +137,92 @@ Workflow GitHub Actions собирает turtle_bringup в контейнере 
 - Ссылки на документацию Jazzy приведены в evidence/pr02/commands.md.
 
 Использование ИИ описывается в AI_USAGE.md.
+
+## ПР03. Первая собственная нода
+
+Пакет `patrol` использует `ament_python` и устанавливает команду
+`ros2 run patrol patrol`. Имя работающей ноды — `/patrol`.
+
+### Окружение
+
+В каждом новом терминале Ubuntu:
+
+```bash
+source /opt/ros/jazzy/setup.bash
+export ROS_DOMAIN_ID=16
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+cd /root/robotics-inspect
+```
+
+### Сборка и тесты
+
+Сборка выполняется в свежем терминале с базовой ROS:
+
+```bash
+colcon build --symlink-install
+source install/setup.bash
+colcon test --python-testing pytest --event-handlers console_direct+ \
+  --return-code-on-test-failure
+colcon test-result --verbose
+```
+
+### Демонстрация
+
+В двух отдельных терминалах подключить окружение выше
+и выполнить `source install/setup.bash`.
+
+В первом терминале запустить симулятор:
+
+```bash
+ros2 launch turtle_bringup sim.launch.py
+```
+
+Во втором запустить ошибочный вариант:
+
+```bash
+ros2 run patrol patrol
+```
+
+Он публикует в `/cmd_vel`, тогда как turtlesim слушает `/turtle1/cmd_vel`.
+После остановки patrol через Ctrl+C запустить исправленный вариант:
+
+```bash
+ros2 run patrol patrol --ros-args -r cmd_vel:=/turtle1/cmd_vel
+```
+
+Подписка на `/turtle1/pose` типа `turtlesim/msg/Pose` сохраняет последнее
+сообщение. Таймер с периодом 0.1 с публикует `geometry_msgs/msg/Twist`.
+До первой позы команда нулевая; после получения позы
+`linear.x=0.5`, `angular.z=0.3`, остальные компоненты нулевые.
+
+Функция `command_from_pose` проверяется без запуска ROS-нод:
+отсутствие позы даёт нулевую команду, полученная поза — команду движения.
+Также проверяется сохранность входной позы.
+
+При Ctrl+C публикация прекращается. Нода не отправляет отдельную
+нулевую команду при завершении; turtlesim останавливается по своему
+таймауту команд.
+
+### Файлы и проверки
+
+- `src/patrol/patrol/patrol.py` — нода и чистая функция выбора команды.
+- `src/patrol/test/test_command.py` — тесты поведения.
+- `src/patrol/package.xml` — зависимости ROS.
+- `src/patrol/setup.py` и `setup.cfg` — установка пакета и команды.
+- `evidence/pr03/` — реальные логи и отчёт.
+- `AI_USAGE.md` — декларация помощи ИИ.
+
+Текущий workflow GitHub Actions собирает оба пакета в ROS 2 Jazzy,
+проверяет установленный launch, выполняет тесты и checker PR03.
+После заполнения отчёта локальная проверка:
+
+```bash
+python3 .course-kit/v1/tools/check_practice.py PR03 --submission .
+```
+
+Course kit: `v1-w09`, SHA-256 архива:
+`8579e0afe96d76220735b6019cc38b1f3cac8c21e4aae8470785138a74a6c54a`.
+
+Источники: задание https://ros.lms.ci.nsu.ru/practices/pr03;
+лекция 03, стр. 3–17; официальная документация ROS 2 Jazzy
+по созданию Python-пакета, издателю и подписчику.
