@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "practice_id": "PR03",
+  "commit": "24d2c74f7d516a01bf3d78f813f523d0621e5c08",
+  "course_kit": {
+    "version": "v1-w09",
+    "archive_sha256": "8579e0afe96d76220735b6019cc38b1f3cac8c21e4aae8470785138a74a6c54a"
+  },
+  "commands": [
+    "colcon build --symlink-install",
+    "python3 -m pytest test -v",
+    "colcon test --python-testing pytest --event-handlers console_direct+ --return-code-on-test-failure",
+    "colcon test-result --verbose",
+    "ros2 launch turtle_bringup sim.launch.py",
+    "ros2 run patrol patrol",
+    "ros2 topic info /cmd_vel --verbose",
+    "ros2 topic info /turtle1/cmd_vel --verbose",
+    "ros2 run patrol patrol --ros-args -r cmd_vel:=/turtle1/cmd_vel",
+    "ros2 topic echo /turtle1/pose --once",
+    "PYTHONUNBUFFERED=1 timeout --signal=INT --kill-after=3s 10s ros2 topic hz /turtle1/cmd_vel --window 100"
+  ],
+  "tests": [
+    {
+      "name": "No pose returns zero Twist",
+      "status": "passed"
+    },
+    {
+      "name": "Received pose returns required Twist without modifying input",
+      "status": "passed"
+    },
+    {
+      "name": "Both packages built; colcon reports 8 tests, 0 errors, 0 failures, 2 skipped",
+      "status": "passed"
+    },
+    {
+      "name": "Remap restores motion; measured command rate approximately 10 Hz",
+      "status": "passed"
+    },
+    {
+      "name": "After patrol shutdown: no publisher, zero velocities, unchanged pose",
+      "status": "passed"
+    }
+  ],
+  "defect": {
+    "reproducer": "Запуск ros2 run patrol patrol без remap: /cmd_vel имеет одного издателя и ноль подписчиков, /turtle1/cmd_vel — ноль издателей и одного подписчика. Команда ненулевая, черепашка неподвижна.",
+    "root_cause": "Относительное cmd_vel в корневом namespace разрешается в /cmd_vel, а turtlesim подписан на другое полное имя /turtle1/cmd_vel.",
+    "proof_after": "После запуска с -r cmd_vel:=/turtle1/cmd_vel обнаружены издатель patrol и подписчик turtlesim на одном топике. Пользователь наблюдал движение; Pose содержит скорости 0.5 и примерно 0.3. Измеренная частота около 10 Гц."
+  },
+  "claims": {
+    "public_tests_passed": true,
+    "defect_reproduced": true,
+    "defect_fixed": true
+  },
+  "time": {
+    "contact_academic_hours": 2,
+    "self_study_hours": 2
+  },
+  "ai_used": true
+}

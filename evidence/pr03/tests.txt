@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /root/robotics-inspect/src/patrol
+plugins: launch-testing-ros-0.26.13, ament-flake8-0.17.5, ament-lint-0.17.5, launch-testing-3.4.12, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-copyright-0.17.5, colcon-core-0.21.3, cov-4.1.0
+collecting ... collected 5 items
+
+test/test_command.py::test_no_pose_returns_zero_command PASSED           [ 20%]
+test/test_command.py::test_pose_returns_motion_command PASSED            [ 40%]
+test/test_copyright.py::test_copyright SKIPPED (No copyright header ...) [ 60%]
+test/test_flake8.py::test_flake8 PASSED                                  [ 80%]
+test/test_pep257.py::test_pep257 PASSED                                  [100%]
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 16 warnings
+  Warning: This process (pid=2004) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================== 4 passed, 1 skipped, 16 warnings in 0.82s ===================

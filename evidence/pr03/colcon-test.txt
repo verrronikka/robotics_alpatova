@@ -1,0 +1,47 @@
+Starting >>> patrol
+Starting >>> turtle_bringup
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+cachedir: /root/robotics-inspect/build/turtle_bringup/.pytest_cache
+rootdir: /root/robotics-inspect/src/turtle_bringup
+plugins: launch-testing-ros-0.26.13, ament-flake8-0.17.5, ament-lint-0.17.5, launch-testing-3.4.12, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-copyright-0.17.5, colcon-core-0.21.3, cov-4.1.0
+collected 3 items
+
+test/test_copyright.py s                                                 [ 33%]
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+cachedir: /root/robotics-inspect/build/patrol/.pytest_cache
+rootdir: /root/robotics-inspect/src/patrol
+plugins: launch-testing-ros-0.26.13, ament-flake8-0.17.5, ament-lint-0.17.5, launch-testing-3.4.12, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-copyright-0.17.5, colcon-core-0.21.3, cov-4.1.0
+collected 5 items
+
+test/test_command.py ..                                                  [ 40%]
+test/test_copyright.py s                                                 [ 60%]
+test/test_flake8.py .                                                    [ 66%]
+test/test_pep257.py .                                                    [100%]
+
+-- generated xml file: /root/robotics-inspect/build/turtle_bringup/pytest.xml --
+========================= 2 passed, 1 skipped in 0.34s =========================
+test/test_flake8.py .                                                    [ 80%]
+Finished <<< turtle_bringup [2.16s]
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 16 warnings
+  Warning: This process (pid=2703) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+test/test_pep257.py .                                                    [100%]
+------ generated xml file: /root/robotics-inspect/build/patrol/pytest.xml ------
+================== 4 passed, 1 skipped, 16 warnings in 0.57s ===================
+--- stderr: patrol
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 16 warnings
+  Warning: This process (pid=2703) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< patrol [2.27s]
+
+Summary: 2 packages finished [2.55s]
+  1 package had stderr output: patrol

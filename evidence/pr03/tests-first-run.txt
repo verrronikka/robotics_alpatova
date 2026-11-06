@@ -1,0 +1,77 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /root/robotics-inspect/src/patrol
+plugins: launch-testing-ros-0.26.13, ament-flake8-0.17.5, ament-lint-0.17.5, launch-testing-3.4.12, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-copyright-0.17.5, colcon-core-0.21.3, cov-4.1.0
+collecting ... collected 5 items
+
+src/patrol/test/test_command.py::test_no_pose_returns_zero_command PASSED [ 20%]
+src/patrol/test/test_command.py::test_pose_returns_motion_command PASSED [ 40%]
+src/patrol/test/test_copyright.py::test_copyright SKIPPED (No copyri...) [ 60%]
+src/patrol/test/test_flake8.py::test_flake8 FAILED                       [ 80%]
+src/patrol/test/test_pep257.py::test_pep257 PASSED                       [100%]
+
+=================================== FAILURES ===================================
+_________________________________ test_flake8 __________________________________
+
+    @pytest.mark.flake8
+    @pytest.mark.linter
+    def test_flake8():
+        rc, errors = main_with_errors(argv=[])
+>       assert rc == 0, \
+            'Found %d code style errors / warnings:\n' % len(errors) + \
+            '\n'.join(errors)
+E       AssertionError: Found 2 code style errors / warnings:
+E         ./src/patrol/patrol/patrol.py:4:1: I100 Import statements are in the wrong order. 'from geometry_msgs.msg import Twist' should be before 'import rclpy'
+E         ./src/patrol/test/test_command.py:6:1: I100 Import statements are in the wrong order. 'from patrol.patrol import command_from_pose' should be before 'from turtlesim.msg import Pose'
+E       assert 1 == 0
+
+src/patrol/test/test_flake8.py:23: AssertionError
+----------------------------- Captured stdout call -----------------------------
+
+./src/patrol/patrol/patrol.py:4:1: I100 Import statements are in the wrong order. 'from geometry_msgs.msg import Twist' should be before 'import rclpy'
+from geometry_msgs.msg import Twist
+^
+
+./src/patrol/test/test_command.py:6:1: I100 Import statements are in the wrong order. 'from patrol.patrol import command_from_pose' should be before 'from turtlesim.msg import Pose'
+from patrol.patrol import command_from_pose
+^
+
+2     I100 Import statements are in the wrong order. 'from geometry_msgs.msg import Twist' should be before 'import rclpy'
+
+21 files checked
+2 errors
+
+'I'-type errors: 2
+
+Checked files:
+
+* ./install/_local_setup_util_ps1.py
+* ./install/_local_setup_util_sh.py
+* ./install/turtle_bringup/share/turtle_bringup/launch/sim.launch.py
+* ./src/turtle_bringup/setup.py
+* ./src/turtle_bringup/turtle_bringup/__init__.py
+* ./src/turtle_bringup/launch/sim.launch.py
+* ./src/turtle_bringup/test/test_copyright.py
+* ./src/turtle_bringup/test/test_pep257.py
+* ./src/turtle_bringup/test/test_flake8.py
+* ./src/patrol/setup.py
+* ./src/patrol/test/test_command.py
+* ./src/patrol/test/test_copyright.py
+* ./src/patrol/test/test_pep257.py
+* ./src/patrol/test/test_flake8.py
+* ./src/patrol/patrol/__init__.py
+* ./src/patrol/patrol/patrol.py
+* ./build/turtle_bringup/setup.py
+* ./build/turtle_bringup/prefix_override/sitecustomize.py
+* ./build/turtle_bringup/launch/sim.launch.py
+* ./build/patrol/setup.py
+* ./build/patrol/prefix_override/sitecustomize.py
+=============================== warnings summary ===============================
+test/test_flake8.py: 16 warnings
+  Warning: This process (pid=1927) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED src/patrol/test/test_flake8.py::test_flake8 - AssertionError: Found 2 ...
+============= 1 failed, 3 passed, 1 skipped, 16 warnings in 1.03s ==============
