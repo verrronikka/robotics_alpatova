@@ -6,7 +6,7 @@ Ubuntu 24.04.3 LTS в WSL2, ROS 2 Jazzy.
 ROS_DOMAIN_ID=16, RMW_IMPLEMENTATION=rmw_fastrtps_cpp.
 Gazebo не используется и не установлен.
 
-Коммит реализации: 24d2c74f7d516a01bf3d78f813f523d0621e5c08.
+Коммит реализации: a63f0f3f1c2ea9a3cecc3d0f3eb8e6f713b136b0.
 
 Пакет patrol находится рядом с сохранённым turtle_bringup.
 Подписка /turtle1/pose имеет тип turtlesim/msg/Pose.
