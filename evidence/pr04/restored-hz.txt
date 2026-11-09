@@ -1,0 +1,13 @@
+WARNING: topic [/turtle1/cmd_vel] does not appear to be published yet
+average rate: 5.002
+	min: 0.199s max: 0.201s std dev: 0.00067s window: 7
+average rate: 5.000
+	min: 0.199s max: 0.201s std dev: 0.00076s window: 12
+average rate: 4.999
+	min: 0.199s max: 0.201s std dev: 0.00076s window: 17
+average rate: 4.999
+	min: 0.198s max: 0.202s std dev: 0.00087s window: 20
+average rate: 5.000
+	min: 0.198s max: 0.203s std dev: 0.00110s window: 20
+average rate: 5.000
+	min: 0.198s max: 0.203s std dev: 0.00112s window: 20

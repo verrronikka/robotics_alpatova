@@ -1,0 +1,19 @@
+commit 1cdbf26f801ca5dbbcd214acd57c2f04033d06d3
+Author: Veronika Alpatova <nikaalpatova130306@gmail.com>
+Date:   Mon Nov 9 22:13:17 2026 +0700
+
+    PR04: temporarily disable frequency validation
+
+diff --git a/src/patrol/patrol/parameters.py b/src/patrol/patrol/parameters.py
+index e72c409..f295c23 100644
+--- a/src/patrol/patrol/parameters.py
++++ b/src/patrol/patrol/parameters.py
+@@ -12,6 +12,8 @@ def validate_values(publish_hz, linear_speed, turn_rate):
+     )
+ 
+     for name, value, minimum, maximum in settings:
++        if name == 'publish_hz':
++            continue  # Temporary PR04 frequency validation defect.
+         if isinstance(value, bool) or not isinstance(value, (int, float)):
+             return False, f'{name} must be a number'
+         if not math.isfinite(value):

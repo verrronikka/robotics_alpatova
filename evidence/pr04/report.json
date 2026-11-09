@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "practice_id": "PR04",
+  "commit": "f197bd4a9052de534dcccc95da6f205e3e7c7bdf",
+  "course_kit": {
+    "version": "v1-w10",
+    "archive_sha256": "7a91d388d7bd3def7e058c8da48c32ff27ea6f14dc880a2da169c4102d456874"
+  },
+  "commands": [
+    "colcon build --symlink-install",
+    "colcon test --python-testing pytest --event-handlers console_direct+ --return-code-on-test-failure",
+    "colcon test-result --verbose",
+    "ros2 param get /patrol publish_hz",
+    "PYTHONUNBUFFERED=1 timeout --signal=INT --kill-after=3s 10s ros2 topic hz /turtle1/cmd_vel --window 20",
+    "ros2 param set /patrol publish_hz 5.0",
+    "ros2 param set /patrol publish_hz 0.0",
+    "git rev-parse HEAD",
+    "PYTHONUNBUFFERED=1 timeout --signal=INT --kill-after=3s 10s ros2 param set /patrol publish_hz 0.0",
+    "PYTHONUNBUFFERED=1 ros2 run patrol patrol --ros-args -r cmd_vel:=/turtle1/cmd_vel",
+    "ros2 node list",
+    "ros2 topic info /turtle1/cmd_vel --verbose",
+    "ros2 param set /patrol linear_speed 0.8",
+    "ros2 param set /patrol turn_rate -0.4",
+    "ros2 topic echo /turtle1/cmd_vel --once",
+    "ros2 param set /patrol linear_speed 0.0",
+    "ros2 param set /patrol turn_rate 0.0",
+    "ros2 service type /clear",
+    "ros2 topic echo /turtle1/pose --once",
+    "ros2 service call /clear std_srvs/srv/Empty '{}'",
+    "ros2 action list -t",
+    "ros2 action info /turtle1/rotate_absolute"
+  ],
+  "tests": [
+    {
+      "name": "colcon: 35 tests, 0 errors, 0 failures, 2 skipped",
+      "status": "passed"
+    },
+    {
+      "name": "Validation: boundaries, zero, negative values, NaN and infinity",
+      "status": "passed"
+    },
+    {
+      "name": "Node: timer replacement, rejection preservation and atomic batch",
+      "status": "passed"
+    },
+    {
+      "name": "Live commands: 10 to 5 Hz and continued stream after rejection",
+      "status": "passed"
+    },
+    {
+      "name": "Speed parameters change Twist; zero speeds produce zero Twist",
+      "status": "passed"
+    },
+    {
+      "name": "Clear service response and rotate_absolute server discovery",
+      "status": "passed"
+    }
+  ],
+  "defect": {
+    "reproducer": "В ветке codex/pr04-frequency-defect, коммит 1cdbf26f801ca5dbbcd214acd57c2f04033d06d3, отключена проверка publish_hz. После установки 5.0 передан запрос 0.0. Получен ZeroDivisionError, код выхода 1; patrol исчезла из графа, издателей команд стало 0.",
+    "root_cause": "Ноль принят без проверки. В post-set обработчике вычисление периода 1.0 / publish_hz вызывает деление на ноль.",
+    "proof_after": "После возврата на pr04 тот же запрос 0.0 отклонён с причиной. Значение осталось 5.0; измеренная частота 4.999–5.002 Гц, patrol присутствует в графе. Тесты подтверждают сохранение объекта таймера и активных значений при отказе."
+  },
+  "claims": {
+    "public_tests_passed": true,
+    "defect_reproduced": true,
+    "defect_fixed": true
+  },
+  "time": {
+    "contact_academic_hours": 1.0,
+    "self_study_hours": 1.0
+  },
+  "ai_used": true
+}
