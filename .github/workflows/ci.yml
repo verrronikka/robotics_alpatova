@@ -1,4 +1,4 @@
-name: PR03 checks
+name: PR04 checks
 
 on: [push, pull_request]
 
@@ -6,7 +6,7 @@ permissions:
   contents: read
 
 jobs:
-  pr03:
+  pr04:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
 
@@ -20,8 +20,8 @@ jobs:
     env:
       ROS_DOMAIN_ID: "16"
       RMW_IMPLEMENTATION: rmw_fastrtps_cpp
-      COURSE_KIT_URL: https://ros.lms.ci.nsu.ru/downloads/robotics-course-kit-v1-w09-8579e0afe96d.tar.gz
-      COURSE_KIT_SHA256: 8579e0afe96d76220735b6019cc38b1f3cac8c21e4aae8470785138a74a6c54a
+      COURSE_KIT_URL: https://ros.lms.ci.nsu.ru/downloads/robotics-course-kit-v1-w10-7a91d388d7bd.tar.gz
+      COURSE_KIT_SHA256: 7a91d388d7bd3def7e058c8da48c32ff27ea6f14dc880a2da169c4102d456874
 
     steps:
       - name: Install dependencies
@@ -71,8 +71,8 @@ jobs:
             "$COURSE_KIT_SHA256" .course-kit/course-kit.tar.gz \
             | sha256sum -c -
           tar -xzf .course-kit/course-kit.tar.gz -C .course-kit
-          test "$(cat .course-kit/v1/VERSION)" = "v1-w09"
+          test "$(cat .course-kit/v1/VERSION)" = "v1-w10"
 
-      - name: Check PR03 submission
+      - name: Check PR04 submission
         run: |
-          python3 .course-kit/v1/tools/check_practice.py PR03 --submission .
+          python3 .course-kit/v1/tools/check_practice.py PR04 --submission .
