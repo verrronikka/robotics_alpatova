@@ -1,0 +1,71 @@
+## Defect commit
+5eefe31dff7babdd8fd73adf619b35b65de103e2 PR06: reproduce incorrect lidar parent
+
+## Expand defective model
+xacro_exit=0
+
+## Structural check
+robot name is: course_ackermann
+---------- Successfully Parsed XML ---------------
+root Link: base_link has 6 child(ren)
+    child(1):  camera_link
+        child(1):  lidar_link
+    child(2):  front_left_knuckle
+        child(1):  front_left_wheel
+    child(3):  front_right_knuckle
+        child(1):  front_right_wheel
+    child(4):  imu_link
+    child(5):  rear_left_wheel
+    child(6):  rear_right_wheel
+check_urdf_exit=0
+
+## Model tests
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /root/robotics-inspect
+plugins: launch-testing-ros-0.26.13, ament-flake8-0.17.5, ament-lint-0.17.5, launch-testing-3.4.12, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-copyright-0.17.5, colcon-core-0.21.3, cov-4.1.0
+collecting ... collected 13 items
+
+src/course_description/test/test_model.py::test_tree PASSED              [  7%]
+src/course_description/test/test_model.py::test_sensor_mounts[camera_link] PASSED [ 15%]
+src/course_description/test/test_model.py::test_sensor_mounts[lidar_link] FAILED [ 23%]
+src/course_description/test/test_model.py::test_sensor_mounts[imu_link] PASSED [ 30%]
+src/course_description/test/test_model.py::test_axle_positions[front_left_steering_joint-expected0] PASSED [ 38%]
+src/course_description/test/test_model.py::test_axle_positions[front_right_steering_joint-expected1] PASSED [ 46%]
+src/course_description/test/test_model.py::test_axle_positions[rear_left_wheel_joint-expected2] PASSED [ 53%]
+src/course_description/test/test_model.py::test_axle_positions[rear_right_wheel_joint-expected3] PASSED [ 61%]
+src/course_description/test/test_model.py::test_wheel_geometry[front_left_wheel-front_left_knuckle] PASSED [ 69%]
+src/course_description/test/test_model.py::test_wheel_geometry[front_right_wheel-front_right_knuckle] PASSED [ 76%]
+src/course_description/test/test_model.py::test_wheel_geometry[rear_left_wheel-base_link] PASSED [ 84%]
+src/course_description/test/test_model.py::test_wheel_geometry[rear_right_wheel-base_link] PASSED [ 92%]
+src/course_description/test/test_model.py::test_inertial_numbers PASSED  [100%]
+
+=================================== FAILURES ===================================
+________________________ test_sensor_mounts[lidar_link] ________________________
+
+robot = <Element 'robot' at 0x77568981ccc0>, sensor = 'lidar_link'
+
+    @pytest.mark.parametrize('sensor', ['camera_link', 'lidar_link', 'imu_link'])
+    def test_sensor_mounts(robot, sensor):
+        matches = [
+            joint for joint in robot.findall('joint')
+            if joint.find('child').attrib['link'] == sensor
+        ]
+        assert len(matches) == 1, f'Expected one joint for {sensor}'
+        joint = matches[0]
+    
+        assert joint.attrib['type'] == 'fixed'
+>       assert joint.find('parent').attrib['link'] == 'base_link', (
+            f'{sensor} must be attached directly to base_link'
+        )
+E       AssertionError: lidar_link must be attached directly to base_link
+E       assert 'camera_link' == 'base_link'
+E         - base_link
+E         + camera_link
+
+src/course_description/test/test_model.py:56: AssertionError
+=========================== short test summary info ============================
+FAILED src/course_description/test/test_model.py::test_sensor_mounts[lidar_link]
+========================= 1 failed, 12 passed in 0.08s =========================
+pytest_exit=1

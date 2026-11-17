@@ -1,0 +1,25 @@
+From 5eefe31dff7babdd8fd73adf619b35b65de103e2 Mon Sep 17 00:00:00 2001
+From: Veronika Alpatova <nikaalpatova130306@gmail.com>
+Date: Tue, 17 Nov 2026 19:03:06 +0700
+Subject: [PATCH] PR06: reproduce incorrect lidar parent
+
+---
+ src/course_description/urdf/vehicle.urdf.xacro | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/course_description/urdf/vehicle.urdf.xacro b/src/course_description/urdf/vehicle.urdf.xacro
+index 0c855f9..eaf5756 100644
+--- a/src/course_description/urdf/vehicle.urdf.xacro
++++ b/src/course_description/urdf/vehicle.urdf.xacro
+@@ -32,7 +32,7 @@
+   <link name="lidar_link"/>
+ 
+   <joint name="lidar_joint" type="fixed">
+-    <parent link="base_link"/>
++    <parent link="camera_link"/>
+     <child link="lidar_link"/>
+     <origin xyz="0.28 0 0.38" rpy="0 0 0"/>
+   </joint>
+-- 
+2.43.0
+

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "practice_id": "PR06",
+  "commit": "ef2d0c3ddf47f03bb52b185068933abc233f5edc",
+  "course_kit": {
+    "version": "v1-w11",
+    "archive_sha256": "0b67bfd41448549d21122124b7f49211ba2cd068cc56751871f319eadeb9d0ab"
+  },
+  "commands": [
+    "colcon build --symlink-install",
+    "xacro src/course_description/urdf/vehicle.urdf.xacro > /tmp/pr06-restored-vehicle.urdf",
+    "check_urdf /tmp/pr06-restored-vehicle.urdf",
+    "ros2 launch course_description description.launch.py",
+    "ros2 run rviz2 rviz2 -d \"$PWD/src/course_description/rviz/model.rviz\"",
+    "python3 -m pytest -v src/course_description/test/test_model.py",
+    "colcon test --python-testing pytest --event-handlers console_direct+ --return-code-on-test-failure",
+    "colcon test-result --verbose",
+    "timeout --signal=INT 6s ros2 run tf2_ros tf2_echo base_link lidar_link",
+    "ros2 run tf2_tools view_frames",
+    "ros2 topic info /tf_static --verbose",
+    "ros2 topic info /tf --verbose",
+    "timeout --signal=INT 4s ros2 topic echo /tf_static --once --qos-durability transient_local --qos-reliability reliable",
+    "timeout --signal=INT 4s ros2 topic echo /tf_static --once --qos-durability volatile --qos-reliability reliable"
+  ],
+  "tests": [
+    {
+      "name": "Workspace: 52 tests, 0 errors, 0 failures, 3 skipped",
+      "status": "passed",
+      "log": "evidence/pr06/public-test-results.txt"
+    },
+    {
+      "name": "Installed Xacro expansion and check_urdf: exit 0",
+      "status": "passed",
+      "log": "evidence/pr06/model-check.txt"
+    },
+    {
+      "name": "Defect detection: expected pytest exit 1, 1 failed and 12 passed",
+      "status": "passed",
+      "log": "evidence/pr06/defect-before.txt"
+    },
+    {
+      "name": "Restored model: 13 passed, pytest exit 0",
+      "status": "passed",
+      "log": "evidence/pr06/defect-after.txt"
+    },
+    {
+      "name": "tf2: defective (0.56, 0, 0.76), restored (0.28, 0, 0.38)",
+      "status": "passed"
+    },
+    {
+      "name": "Late /tf_static readers: transient_local exit 0, volatile exit 124",
+      "status": "passed",
+      "log": "evidence/pr06/tf-qos.txt"
+    }
+  ],
+  "defect": {
+    "branch": "codex/pr06-lidar-parent-defect",
+    "commit": "5eefe31dff7babdd8fd73adf619b35b65de103e2",
+    "reproducer": "Set camera_link as lidar_link parent and retain xyz=(0.28,0,0.38). check_urdf exits 0; the lidar parent test fails and tf2 reports (0.56,0,0.76).",
+    "root_cause": "The unchanged joint offset is applied relative to camera_link, adding the camera offset to the lidar position.",
+    "proof_after": "Returning to pr06 restores parent base_link. The same 13 tests pass; tf2 reports (0.28,0,0.38) and view_frames shows a direct base_link -> lidar_link edge."
+  },
+  "claims": {
+    "public_tests_passed": true,
+    "defect_reproduced": true,
+    "defect_fixed": true
+  },
+  "time": {
+    "contact_academic_hours": 0,
+    "self_study_hours": 1
+  },
+  "ai_used": true
+}

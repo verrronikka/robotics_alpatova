@@ -1,0 +1,60 @@
+## Defect commit
+5eefe31dff7babdd8fd73adf619b35b65de103e2 PR06: reproduce incorrect lidar parent
+
+## Running nodes
+/robot_state_publisher
+
+## base_link -> lidar_link
+[INFO] [1794917284.579852268] [tf2_echo]: Waiting for transform base_link ->  lidar_link: Invalid frame ID "base_link" passed to canTransform argument target_frame - frame does not exist
+At time 0.0
+- Translation: [0.560, 0.000, 0.760]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, 0.000, 1.000]
+- Rotation: in RPY (radian) [0.000, -0.000, 0.000]
+- Rotation: in RPY (degree) [0.000, -0.000, 0.000]
+- Matrix:
+  1.000  0.000  0.000  0.560
+  0.000  1.000  0.000  0.000
+  0.000  0.000  1.000  0.760
+  0.000  0.000  0.000  1.000
+At time 0.0
+- Translation: [0.560, 0.000, 0.760]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, 0.000, 1.000]
+- Rotation: in RPY (radian) [0.000, -0.000, 0.000]
+- Rotation: in RPY (degree) [0.000, -0.000, 0.000]
+- Matrix:
+  1.000  0.000  0.000  0.560
+  0.000  1.000  0.000  0.000
+  0.000  0.000  1.000  0.760
+  0.000  0.000  0.000  1.000
+At time 0.0
+- Translation: [0.560, 0.000, 0.760]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, 0.000, 1.000]
+- Rotation: in RPY (radian) [0.000, -0.000, 0.000]
+- Rotation: in RPY (degree) [0.000, -0.000, 0.000]
+- Matrix:
+  1.000  0.000  0.000  0.560
+  0.000  1.000  0.000  0.000
+  0.000  0.000  1.000  0.760
+  0.000  0.000  0.000  1.000
+At time 0.0
+- Translation: [0.560, 0.000, 0.760]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, 0.000, 1.000]
+- Rotation: in RPY (radian) [0.000, -0.000, 0.000]
+- Rotation: in RPY (degree) [0.000, -0.000, 0.000]
+- Matrix:
+  1.000  0.000  0.000  0.560
+  0.000  1.000  0.000  0.000
+  0.000  0.000  1.000  0.760
+  0.000  0.000  0.000  1.000
+At time 0.0
+- Translation: [0.560, 0.000, 0.760]
+- Rotation: in Quaternion (xyzw) [0.000, 0.000, 0.000, 1.000]
+- Rotation: in RPY (radian) [0.000, -0.000, 0.000]
+- Rotation: in RPY (degree) [0.000, -0.000, 0.000]
+- Matrix:
+  1.000  0.000  0.000  0.560
+  0.000  1.000  0.000  0.000
+  0.000  0.000  1.000  0.760
+  0.000  0.000  0.000  1.000
+[INFO] [1794917290.310879684] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+tf2_echo_exit=124

@@ -1,0 +1,111 @@
+Starting >>> patrol
+Starting >>> course_description
+Starting >>> turtle_bringup
+UpdateCTestConfiguration  from :/root/robotics-inspect/build/course_description/CTestConfiguration.ini
+Parse Config file:/root/robotics-inspect/build/course_description/CTestConfiguration.ini
+   Site: Veronika
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+Create new tag: 20261117-1155 - Experimental
+UpdateCTestConfiguration  from :/root/robotics-inspect/build/course_description/CTestConfiguration.ini
+Parse Config file:/root/robotics-inspect/build/course_description/CTestConfiguration.ini
+Test project /root/robotics-inspect/build/course_description
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: model
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/root/robotics-inspect/build/course_description/test_results/course_description/model.xunit.xml" "--package-name" "course_description" "--output-file" "/root/robotics-inspect/build/course_description/ament_cmake_pytest/model.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/robotics-inspect/src/course_description/test/test_model.py" "-o" "cache_dir=/root/robotics-inspect/build/course_description/ament_cmake_pytest/model/.cache" "--junit-xml=/root/robotics-inspect/build/course_description/test_results/course_description/model.xunit.xml" "--junit-prefix=course_description"
+1: Working Directory: /root/robotics-inspect/build/course_description
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/root/robotics-inspect/build/course_description':
+1:  - /usr/bin/python3 -u -m pytest /root/robotics-inspect/src/course_description/test/test_model.py -o cache_dir=/root/robotics-inspect/build/course_description/ament_cmake_pytest/model/.cache --junit-xml=/root/robotics-inspect/build/course_description/test_results/course_description/model.xunit.xml --junit-prefix=course_description
+1: ============================= test session starts ==============================
+1: platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+1: cachedir: build/course_description/ament_cmake_pytest/model/.cache
+1: rootdir: /root/robotics-inspect
+1: plugins: launch-testing-ros-0.26.13, ament-flake8-0.17.5, ament-lint-0.17.5, launch-testing-3.4.12, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-copyright-0.17.5, colcon-core-0.21.3, cov-4.1.0
+1: collected 13 items
+1: 
+1: ../../src/course_description/test/test_model.py .............            [100%]
+1: 
+1: - generated xml file: /root/robotics-inspect/build/course_description/test_results/course_description/model.xunit.xml -
+1: ============================== 13 passed in 0.03s ==============================
+1: -- run_test.py: return code 0
+1: -- run_test.py: verify result file '/root/robotics-inspect/build/course_description/test_results/course_description/model.xunit.xml'
+1/1 Test #1: model ............................   Passed    0.40 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Label Time Summary:
+pytest    =   0.40 sec*proc (1 test)
+
+Total Test time (real) =   0.40 sec
+Finished <<< course_description [0.67s]
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+cachedir: /root/robotics-inspect/build/patrol/.pytest_cache
+rootdir: /root/robotics-inspect/src/patrol
+plugins: launch-testing-ros-0.26.13, ament-flake8-0.17.5, ament-lint-0.17.5, launch-testing-3.4.12, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-copyright-0.17.5, colcon-core-0.21.3, cov-4.1.0
+collected 32 items
+
+test/test_command.py ..                                                  [  6%]
+test/test_copyright.py s                                                 [  9%]
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+cachedir: /root/robotics-inspect/build/turtle_bringup/.pytest_cache
+rootdir: /root/robotics-inspect/src/turtle_bringup
+plugins: launch-testing-ros-0.26.13, ament-flake8-0.17.5, ament-lint-0.17.5, launch-testing-3.4.12, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-copyright-0.17.5, colcon-core-0.21.3, cov-4.1.0
+collected 3 items
+
+test/test_copyright.py s                                                 [ 33%]
+test/test_flake8.py .                                                    [ 66%]
+test/test_pep257.py .                                                    [100%]
+
+-- generated xml file: /root/robotics-inspect/build/turtle_bringup/pytest.xml --
+========================= 2 passed, 1 skipped in 0.17s =========================
+test/test_flake8.py .                                                    [ 12%]
+Finished <<< turtle_bringup [1.21s]
+test/test_node_parameters.py ......                                      [ 31%]
+test/test_parameters.py .....................                            [ 96%]
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 16 warnings
+  Warning: This process (pid=9756) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+test/test_pep257.py .                                                    [100%]
+------ generated xml file: /root/robotics-inspect/build/patrol/pytest.xml ------
+================== 31 passed, 1 skipped, 16 warnings in 0.59s ==================
+--- stderr: patrol
+
+=============================== warnings summary ===============================
+test/test_flake8.py: 16 warnings
+  Warning: This process (pid=9756) is multi-threaded, use of fork() may lead to deadlocks in the child.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+---
+Finished <<< patrol [1.56s]
+Starting >>> course_bringup
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-7.4.4, pluggy-1.4.0
+cachedir: /root/robotics-inspect/build/course_bringup/.pytest_cache
+rootdir: /root/robotics-inspect/src/course_bringup
+plugins: launch-testing-ros-0.26.13, ament-flake8-0.17.5, ament-lint-0.17.5, launch-testing-3.4.12, ament-pep257-0.17.5, ament-xmllint-0.17.5, ament-copyright-0.17.5, colcon-core-0.21.3, cov-4.1.0
+collected 3 items
+
+test/test_copyright.py s                                                 [ 33%]
+test/test_flake8.py .                                                    [ 66%]
+test/test_pep257.py .                                                    [100%]
+
+-- generated xml file: /root/robotics-inspect/build/course_bringup/pytest.xml --
+========================= 2 passed, 1 skipped in 0.20s =========================
+Finished <<< course_bringup [1.65s]
+
+Summary: 4 packages finished [3.38s]
+  1 package had stderr output: patrol
+colcon_test_exit=0

@@ -1,0 +1,6 @@
+{
+  "errors": [],
+  "practice_id": "PR06",
+  "status": "passed"
+}
+checker_exit=0
