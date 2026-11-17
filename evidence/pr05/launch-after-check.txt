@@ -1,0 +1,33 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-11-17-17-25-16-966499-Veronika-6448
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: namespace=robot_a, subscriber_reliability=best_effort, record=false, sensor_topic=/robot_a/sensor_pose
+[INFO] [turtlesim_node-1]: process started with pid [6452]
+[INFO] [patrol-2]: process started with pid [6453]
+[INFO] [pose_relay-3]: process started with pid [6454]
+[INFO] [pose_subscriber-4]: process started with pid [6455]
+[turtlesim_node-1] QStandardPaths: wrong permissions on runtime directory /run/user/0/, 0755 instead of 0700
+[turtlesim_node-1] [INFO] [1794911117.096695590] [turtlesim]: Starting turtlesim with node name /turtlesim
+[turtlesim_node-1] [INFO] [1794911117.126511933] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+[pose_relay-3] [INFO] [1794911117.353376478] [robot_a.pose_relay]: Relaying pose to sensor_pose with best_effort QoS
+[pose_subscriber-4] [INFO] [1794911117.392415191] [robot_a.pose_subscriber]: Subscribing to sensor_pose with best_effort QoS
+[pose_subscriber-4] [INFO] [1794911118.384709212] [robot_a.pose_subscriber]: received=65
+[pose_subscriber-4] [INFO] [1794911119.384688760] [robot_a.pose_subscriber]: received=127
+[pose_subscriber-4] [INFO] [1794911120.384772421] [robot_a.pose_subscriber]: received=190
+[pose_subscriber-4] [INFO] [1794911121.384382188] [robot_a.pose_subscriber]: received=252
+[pose_subscriber-4] [INFO] [1794911122.384737984] [robot_a.pose_subscriber]: received=315
+[pose_subscriber-4] [INFO] [1794911123.385498184] [robot_a.pose_subscriber]: received=377
+[pose_subscriber-4] [INFO] [1794911126.103462076] [robot_a.pose_subscriber]: received=392
+[pose_subscriber-4] [INFO] [1794911126.384102978] [robot_a.pose_subscriber]: received=410
+[pose_subscriber-4] [INFO] [1794911127.384264383] [robot_a.pose_subscriber]: received=473
+[pose_subscriber-4] [INFO] [1794911128.384182535] [robot_a.pose_subscriber]: received=535
+[pose_subscriber-4] [INFO] [1794911129.384553765] [robot_a.pose_subscriber]: received=598
+[pose_subscriber-4] [INFO] [1794911130.383944372] [robot_a.pose_subscriber]: received=660
+[pose_subscriber-4] [INFO] [1794911131.384247306] [robot_a.pose_subscriber]: received=723
+[pose_subscriber-4] [INFO] [1794911132.384993976] [robot_a.pose_subscriber]: received=785
+[pose_subscriber-4] [INFO] [1794911133.384416811] [robot_a.pose_subscriber]: received=847
+[pose_subscriber-4] [INFO] [1794911134.385207465] [robot_a.pose_subscriber]: received=910
+[pose_subscriber-4] [INFO] [1794911135.384497846] [robot_a.pose_subscriber]: received=973
+[pose_subscriber-4] [INFO] [1794911136.384929138] [robot_a.pose_subscriber]: received=1035
+[pose_subscriber-4] [INFO] [1794911137.384286154] [robot_a.pose_subscriber]: received=1098
+[pose_subscriber-4] [INFO] [1794911138.384949999] [robot_a.pose_subscriber]: received=1160
+[pose_subscriber-4] [INFO] [1794911139.383924328] [robot_a.pose_subscriber]: received=1223

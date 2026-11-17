@@ -1,0 +1,111 @@
+=== LIVE AFTER: best_effort subscriber ===
+2026-11-17T17:25:30+07:00
+/robot_a/patrol
+/robot_a/pose_relay
+/robot_a/pose_subscriber
+/turtlesim
+Type: turtlesim/msg/Pose
+
+Publisher count: 1
+
+Node name: pose_relay
+Node namespace: /robot_a
+Topic type: turtlesim/msg/Pose
+Topic type hash: RIHS01_739beba26bcba6920404ba722b7b8321348512f92ea5be235c47251940dd8aa9
+Endpoint type: PUBLISHER
+GID: 01.0f.51.42.36.19.16.b9.00.00.00.00.00.00.13.03
+QoS profile:
+  Reliability: BEST_EFFORT
+  History (Depth): UNKNOWN
+  Durability: VOLATILE
+  Lifespan: Infinite
+  Deadline: Infinite
+  Liveliness: AUTOMATIC
+  Liveliness lease duration: Infinite
+
+Subscription count: 1
+
+Node name: pose_subscriber
+Node namespace: /robot_a
+Topic type: turtlesim/msg/Pose
+Topic type hash: RIHS01_739beba26bcba6920404ba722b7b8321348512f92ea5be235c47251940dd8aa9
+Endpoint type: SUBSCRIPTION
+GID: 01.0f.51.42.37.19.b6.0e.00.00.00.00.00.00.13.04
+QoS profile:
+  Reliability: BEST_EFFORT
+  History (Depth): UNKNOWN
+  Durability: VOLATILE
+  Lifespan: Infinite
+  Deadline: Infinite
+  Liveliness: AUTOMATIC
+  Liveliness lease duration: Infinite
+
+
+=== Best-effort reader ===
+x: 5.01362419128418
+y: 8.79232406616211
+theta: -2.822385311126709
+linear_velocity: 0.5
+angular_velocity: 0.30000001192092896
+---
+best_effort_echo_exit_code=0
+
+=== Subscriber log excerpt ===
+[pose_subscriber-4] [INFO] [1794911121.384382188] [robot_a.pose_subscriber]: received=252
+[pose_subscriber-4] [INFO] [1794911122.384737984] [robot_a.pose_subscriber]: received=315
+[pose_subscriber-4] [INFO] [1794911123.385498184] [robot_a.pose_subscriber]: received=377
+[pose_subscriber-4] [INFO] [1794911126.103462076] [robot_a.pose_subscriber]: received=392
+[pose_subscriber-4] [INFO] [1794911126.384102978] [robot_a.pose_subscriber]: received=410
+[pose_subscriber-4] [INFO] [1794911127.384264383] [robot_a.pose_subscriber]: received=473
+[pose_subscriber-4] [INFO] [1794911128.384182535] [robot_a.pose_subscriber]: received=535
+[pose_subscriber-4] [INFO] [1794911129.384553765] [robot_a.pose_subscriber]: received=598
+[pose_subscriber-4] [INFO] [1794911130.383944372] [robot_a.pose_subscriber]: received=660
+[pose_subscriber-4] [INFO] [1794911131.384247306] [robot_a.pose_subscriber]: received=723
+
+=== Previously recorded MCAP ===
+
+Files:             bag_0.mcap
+Bag size:          89.4 KiB
+Storage id:        mcap
+ROS Distro:        jazzy
+Duration:          19.538207750s
+Start:             Nov 17 2026 17:22:11.471879405 (1794910931.471879405)
+End:               Nov 17 2026 17:22:31.010087155 (1794910951.010087155)
+Messages:          1222
+Topic information: Topic: /robot_a/sensor_pose | Type: turtlesim/msg/Pose | Count: 1222 | Serialization Format: cdr
+Service:           0
+Service information:
+
+=== REPLAY AFTER: best_effort reader ===
+2026-11-17T17:32:34+07:00
+99193e2319c97d23f2bb95bbb50d3205311ff652bff08c73933b792cefd88f76  evidence/pr05/bag/bag_0.mcap
+515a9c472fac20ad7fefc041bdfa2b9176ab860f4164403d202ec53e7ba31d86  config/qos-overrides.yaml
+/rosbag2_player
+Type: turtlesim/msg/Pose
+
+Publisher count: 1
+
+Node name: rosbag2_player
+Node namespace: /
+Topic type: turtlesim/msg/Pose
+Topic type hash: RIHS01_739beba26bcba6920404ba722b7b8321348512f92ea5be235c47251940dd8aa9
+Endpoint type: PUBLISHER
+GID: 01.0f.51.42.b6.1a.be.31.00.00.00.00.00.00.14.03
+QoS profile:
+  Reliability: BEST_EFFORT
+  History (Depth): UNKNOWN
+  Durability: VOLATILE
+  Lifespan: Infinite
+  Deadline: Infinite
+  Liveliness: AUTOMATIC
+  Liveliness lease duration: Infinite
+
+Subscription count: 0
+
+x: 7.195834159851074
+y: 7.40467643737793
+theta: 1.6848000288009644
+linear_velocity: 0.5
+angular_velocity: 0.30000001192092896
+---
+replay_best_effort_exit_code=0

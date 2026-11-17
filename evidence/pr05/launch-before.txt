@@ -1,0 +1,77 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-11-17-17-21-02-418434-Veronika-5335
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: namespace=robot_a, subscriber_reliability=reliable, record=false, sensor_topic=/robot_a/sensor_pose
+[INFO] [turtlesim_node-1]: process started with pid [5339]
+[INFO] [patrol-2]: process started with pid [5340]
+[INFO] [pose_relay-3]: process started with pid [5341]
+[INFO] [pose_subscriber-4]: process started with pid [5342]
+[turtlesim_node-1] QStandardPaths: wrong permissions on runtime directory /run/user/0/, 0755 instead of 0700
+[turtlesim_node-1] [INFO] [1794910862.505038055] [turtlesim]: Starting turtlesim with node name /turtlesim
+[turtlesim_node-1] [INFO] [1794910862.510175449] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+[pose_relay-3] [INFO] [1794910862.722169710] [robot_a.pose_relay]: Relaying pose to sensor_pose with best_effort QoS
+[pose_subscriber-4] [INFO] [1794910862.723163054] [robot_a.pose_subscriber]: Subscribing to sensor_pose with reliable QoS
+[pose_relay-3] [WARN] [1794910862.805708123] [robot_a.pose_relay]: New subscription discovered on topic 'sensor_pose', requesting incompatible QoS. No messages will be sent to it. Last incompatible policy: RELIABILITY
+[pose_subscriber-4] [WARN] [1794910862.961930483] [robot_a.pose_subscriber]: New publisher discovered on topic 'sensor_pose', offering incompatible QoS. No messages will be received from it. Last incompatible policy: RELIABILITY
+[pose_subscriber-4] [INFO] [1794910863.715465848] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910864.715771430] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910865.715470155] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910866.715189072] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910867.715463935] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910868.715118502] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910869.715088196] [robot_a.pose_subscriber]: received=0
+[pose_relay-3] [WARN] [1794910870.412485715] [robot_a.pose_relay]: New subscription discovered on topic 'sensor_pose', requesting incompatible QoS. No messages will be sent to it. Last incompatible policy: RELIABILITY
+[pose_subscriber-4] [INFO] [1794910870.715664451] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910871.715790092] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910872.716105926] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910873.715833801] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910874.715804289] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910875.715683632] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910876.715603388] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910877.715815445] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910878.716190913] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910879.716041591] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910880.716094807] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910881.715596293] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910882.716233744] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910885.785126338] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910886.715976810] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910887.716064797] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910888.715205358] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910889.715187334] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910890.715164975] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910891.715159371] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910892.715186855] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910893.715193864] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910894.715137577] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910895.715153392] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910896.715897545] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910897.715105245] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910898.715550908] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910899.715809846] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910900.715539679] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910901.715675153] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910902.715833635] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910903.715262470] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910904.715705908] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910905.715619689] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910906.715856150] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910907.715682841] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910908.715951743] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910909.715239492] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910910.715878068] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910911.715119386] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910912.715552993] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910913.715167025] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910914.715302292] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910915.716088784] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910916.715425953] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910917.721741771] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910920.792906316] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910921.719510477] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910922.715129323] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910923.715427061] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910924.715520906] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910925.716194731] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910926.715652572] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910927.715686222] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910928.715648805] [robot_a.pose_subscriber]: received=0

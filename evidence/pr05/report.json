@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "practice_id": "PR05",
+  "commit": "646e1912a3cfbbd8d3ef041a09f1b1ecfbedc79b",
+  "course_kit": {
+    "version": "v1-w11",
+    "archive_sha256": "0b67bfd41448549d21122124b7f49211ba2cd068cc56751871f319eadeb9d0ab"
+  },
+  "commands": [
+    "colcon build --symlink-install",
+    "ros2 launch course_bringup patrol.launch.py --show-args",
+    "colcon test --python-testing pytest --event-handlers console_direct+ --return-code-on-test-failure",
+    "colcon test-result --verbose",
+    "ros2 launch course_bringup patrol.launch.py namespace:=robot_a subscriber_reliability:=reliable record:=false",
+    "ros2 launch course_bringup patrol.launch.py namespace:=robot_a subscriber_reliability:=best_effort record:=true bag_dir:=evidence/pr05/bag",
+    "ros2 bag info evidence/pr05/bag",
+    "ros2 bag play evidence/pr05/bag --qos-profile-overrides-path config/qos-overrides.yaml --loop",
+    "timeout 5s ros2 topic echo /robot_a/sensor_pose turtlesim/msg/Pose --qos-reliability reliable --once",
+    "timeout 5s ros2 topic echo /robot_a/sensor_pose turtlesim/msg/Pose --qos-reliability best_effort --once"
+  ],
+  "tests": [
+    {
+      "name": "colcon: 38 tests, 0 errors, 0 failures, 3 skipped",
+      "status": "passed"
+    },
+    {
+      "name": "Live reliable reader: expected timeout 124",
+      "status": "passed"
+    },
+    {
+      "name": "Live best_effort reader: message, exit 0",
+      "status": "passed"
+    },
+    {
+      "name": "Replay reliable reader: expected timeout 124",
+      "status": "passed"
+    },
+    {
+      "name": "Replay best_effort reader: message, exit 0",
+      "status": "passed"
+    }
+  ],
+  "defect": {
+    "reproducer": "best_effort publisher with reliable subscriber: topic visible, received=0, RELIABILITY warning, echo timeout exit 124.",
+    "root_cause": "The reliable subscription requests stronger reliability than the best_effort publisher offers.",
+    "proof_after": "With best_effort subscription the live counter increases and echo receives a Pose with exit 0. The same MCAP replay with unchanged QoS override gives reliable exit 124 and best_effort exit 0; bag and YAML hashes match in both checks."
+  },
+  "claims": {
+    "public_tests_passed": true,
+    "defect_reproduced": true,
+    "defect_fixed": true,
+    "replay_verified": true
+  },
+  "recording": {
+    "storage_id": "mcap",
+    "topic": "/robot_a/sensor_pose",
+    "type": "turtlesim/msg/Pose",
+    "message_count": 1222,
+    "duration_seconds": 19.53820775,
+    "file": "evidence/pr05/bag/bag_0.mcap",
+    "sha256": "99193e2319c97d23f2bb95bbb50d3205311ff652bff08c73933b792cefd88f76"
+  },
+  "time": {
+    "contact_academic_hours": 0,
+    "self_study_hours": 0.33
+  },
+  "ai_used": true
+}

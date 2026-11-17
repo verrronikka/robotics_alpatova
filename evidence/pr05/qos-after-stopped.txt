@@ -1,0 +1,25 @@
+=== LIVE AFTER: best_effort subscriber ===
+2026-11-17T17:22:36+07:00
+Unknown topic '/robot_a/sensor_pose'
+
+=== Best-effort reader ===
+WARNING: topic [/robot_a/sensor_pose] does not appear to be published yet
+Could not determine the type for the passed topic
+best_effort_echo_exit_code=1
+
+=== Subscriber and recorder log excerpt ===
+[pose_subscriber-4] [INFO] [1794910936.262724628] [robot_a.pose_subscriber]: received=316
+[pose_subscriber-4] [INFO] [1794910937.262785929] [robot_a.pose_subscriber]: received=378
+[pose_subscriber-4] [INFO] [1794910938.262478367] [robot_a.pose_subscriber]: received=441
+[pose_subscriber-4] [INFO] [1794910939.261944599] [robot_a.pose_subscriber]: received=503
+[pose_subscriber-4] [INFO] [1794910940.262714015] [robot_a.pose_subscriber]: received=566
+[pose_subscriber-4] [INFO] [1794910941.262884788] [robot_a.pose_subscriber]: received=628
+[pose_subscriber-4] [INFO] [1794910942.262430885] [robot_a.pose_subscriber]: received=691
+[pose_subscriber-4] [INFO] [1794910943.262807335] [robot_a.pose_subscriber]: received=753
+[pose_subscriber-4] [INFO] [1794910944.261999008] [robot_a.pose_subscriber]: received=816
+[pose_subscriber-4] [INFO] [1794910945.262671995] [robot_a.pose_subscriber]: received=878
+[pose_subscriber-4] [INFO] [1794910946.262659916] [robot_a.pose_subscriber]: received=941
+[pose_subscriber-4] [INFO] [1794910947.262800638] [robot_a.pose_subscriber]: received=1003
+[pose_subscriber-4] [INFO] [1794910948.262493998] [robot_a.pose_subscriber]: received=1066
+[pose_subscriber-4] [INFO] [1794910949.262577647] [robot_a.pose_subscriber]: received=1128
+[pose_subscriber-4] [INFO] [1794910950.262226098] [robot_a.pose_subscriber]: received=1191

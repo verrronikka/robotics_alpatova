@@ -1,0 +1,104 @@
+=== LIVE BEFORE: reliable subscriber ===
+2026-11-17T17:21:08+07:00
+/robot_a/patrol
+/robot_a/pose_relay
+/robot_a/pose_subscriber
+/turtlesim
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/robot_a/sensor_pose [turtlesim/msg/Pose]
+/rosout [rcl_interfaces/msg/Log]
+/turtle1/cmd_vel [geometry_msgs/msg/Twist]
+/turtle1/color_sensor [turtlesim/msg/Color]
+/turtle1/pose [turtlesim/msg/Pose]
+Type: turtlesim/msg/Pose
+
+Publisher count: 1
+
+Node name: pose_relay
+Node namespace: /robot_a
+Topic type: turtlesim/msg/Pose
+Topic type hash: RIHS01_739beba26bcba6920404ba722b7b8321348512f92ea5be235c47251940dd8aa9
+Endpoint type: PUBLISHER
+GID: 01.0f.51.42.dd.14.b1.c2.00.00.00.00.00.00.13.03
+QoS profile:
+  Reliability: BEST_EFFORT
+  History (Depth): UNKNOWN
+  Durability: VOLATILE
+  Lifespan: Infinite
+  Deadline: Infinite
+  Liveliness: AUTOMATIC
+  Liveliness lease duration: Infinite
+
+Subscription count: 1
+
+Node name: pose_subscriber
+Node namespace: /robot_a
+Topic type: turtlesim/msg/Pose
+Topic type hash: RIHS01_739beba26bcba6920404ba722b7b8321348512f92ea5be235c47251940dd8aa9
+Endpoint type: SUBSCRIPTION
+GID: 01.0f.51.42.de.14.e0.18.00.00.00.00.00.00.13.04
+QoS profile:
+  Reliability: RELIABLE
+  History (Depth): UNKNOWN
+  Durability: VOLATILE
+  Lifespan: Infinite
+  Deadline: Infinite
+  Liveliness: AUTOMATIC
+  Liveliness lease duration: Infinite
+
+
+=== Reliable reader ===
+[WARN] [1794910870.434608341] [_ros2cli_5506]: New publisher discovered on topic '/robot_a/sensor_pose', offering incompatible QoS. No messages will be received from it. Last incompatible policy: RELIABILITY
+reliable_echo_exit_code=124
+
+=== Best-effort control reader ===
+x: 4.515415668487549
+y: 8.525299072265625
+theta: -2.4815852642059326
+linear_velocity: 0.5
+angular_velocity: 0.30000001192092896
+---
+best_effort_echo_exit_code=0
+
+=== Subscriber log excerpt ===
+[pose_subscriber-4] [INFO] [1794910865.715470155] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910866.715189072] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910867.715463935] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910868.715118502] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910869.715088196] [robot_a.pose_subscriber]: received=0
+[pose_relay-3] [WARN] [1794910870.412485715] [robot_a.pose_relay]: New subscription discovered on topic 'sensor_pose', requesting incompatible QoS. No messages will be sent to it. Last incompatible policy: RELIABILITY
+[pose_subscriber-4] [INFO] [1794910870.715664451] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910871.715790092] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910872.716105926] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910873.715833801] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910874.715804289] [robot_a.pose_subscriber]: received=0
+[pose_subscriber-4] [INFO] [1794910875.715683632] [robot_a.pose_subscriber]: received=0
+
+=== REPLAY BEFORE: reliable reader ===
+2026-11-17T17:29:38+07:00
+99193e2319c97d23f2bb95bbb50d3205311ff652bff08c73933b792cefd88f76  evidence/pr05/bag/bag_0.mcap
+515a9c472fac20ad7fefc041bdfa2b9176ab860f4164403d202ec53e7ba31d86  config/qos-overrides.yaml
+/rosbag2_player
+Type: turtlesim/msg/Pose
+
+Publisher count: 1
+
+Node name: rosbag2_player
+Node namespace: /
+Topic type: turtlesim/msg/Pose
+Topic type hash: RIHS01_739beba26bcba6920404ba722b7b8321348512f92ea5be235c47251940dd8aa9
+Endpoint type: PUBLISHER
+GID: 01.0f.51.42.28.1a.76.e4.00.00.00.00.00.00.14.03
+QoS profile:
+  Reliability: BEST_EFFORT
+  History (Depth): UNKNOWN
+  Durability: VOLATILE
+  Lifespan: Infinite
+  Deadline: Infinite
+  Liveliness: AUTOMATIC
+  Liveliness lease duration: Infinite
+
+Subscription count: 0
+
+[WARN] [1794911380.147263386] [_ros2cli_6771]: New publisher discovered on topic '/robot_a/sensor_pose', offering incompatible QoS. No messages will be received from it. Last incompatible policy: RELIABILITY
+replay_reliable_exit_code=124
