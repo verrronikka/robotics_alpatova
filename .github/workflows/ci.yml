@@ -1,4 +1,4 @@
-name: PR05 checks
+name: PR05 and PR06 checks
 
 on: [push, pull_request]
 
@@ -34,6 +34,11 @@ jobs:
             python3-colcon-common-extensions \
             python3-setuptools \
             python3-pytest \
+            liburdfdom-tools \
+            ros-jazzy-xacro \
+            ros-jazzy-robot-state-publisher \
+            ros-jazzy-rviz2 \
+            ros-jazzy-ament-cmake-pytest \
             ros-jazzy-turtlesim \
             ros-jazzy-launch-ros \
             ros-jazzy-ros2bag \
@@ -59,6 +64,17 @@ jobs:
           ros2 pkg executables patrol | grep -Fx 'patrol patrol'
           ros2 pkg executables patrol | grep -Fx 'patrol pose_relay'
           ros2 pkg executables patrol | grep -Fx 'patrol pose_subscriber'
+
+      - name: Check installed robot description
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source install/setup.bash
+          description_share="$(ros2 pkg prefix course_description)/share/course_description"
+          test -f "$description_share/launch/description.launch.py"
+          test -f "$description_share/rviz/model.rviz"
+          xacro "$description_share/urdf/vehicle.urdf.xacro" > /tmp/pr06-vehicle.urdf
+          check_urdf /tmp/pr06-vehicle.urdf
+          ros2 launch course_description description.launch.py --show-args
 
       - name: Run package tests
         run: |
@@ -89,3 +105,7 @@ jobs:
       - name: Check PR05 submission
         run: |
           python3 .course-kit/v1/tools/check_practice.py PR05 --submission .
+
+      - name: Check PR06 submission
+        run: |
+          python3 .course-kit/v1/tools/check_practice.py PR06 --submission .

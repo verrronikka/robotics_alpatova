@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="course_ackermann">
+
+  <xacro:property name="body_length" value="1.05"/>
+  <xacro:property name="body_width" value="0.52"/>
+  <xacro:property name="body_height" value="0.22"/>
+  <xacro:property name="body_z" value="0.12"/>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 ${body_z}"/>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+      <material name="body_blue">
+        <color rgba="0.05 0.36 0.72 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${body_z}"/>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="12.0"/>
+      <inertia ixx="0.55" ixy="0" ixz="0"
+               iyy="1.10" iyz="0" izz="1.40"/>
+    </inertial>
+  </link>
+
+  <link name="lidar_link"/>
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+    <origin xyz="0.28 0 0.38" rpy="0 0 0"/>
+  </joint>
+
+
+  <link name="camera_link"/>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_link"/>
+    <origin xyz="0.28 0 0.38" rpy="0 0 0"/>
+  </joint>
+
+  <link name="imu_link"/>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.28 0 0.38" rpy="0 0 0"/>
+  </joint>
+
+  <xacro:include filename="wheels.xacro"/>
+
+</robot>
