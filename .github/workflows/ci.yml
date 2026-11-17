@@ -104,7 +104,10 @@ jobs:
 
       - name: Check PR05 submission
         run: |
-          python3 .course-kit/v1/tools/check_practice.py PR05 --submission .
+          pr05_submission="$(mktemp -d "$RUNNER_TEMP/pr05-submission.XXXXXX")"
+          git worktree add --detach "$pr05_submission" 8f1d65838aa06285d0eed903d0c8069dc8052cdf
+          python3 "$GITHUB_WORKSPACE/.course-kit/v1/tools/check_practice.py" PR05 --submission "$pr05_submission"
+          git worktree remove "$pr05_submission"
 
       - name: Check PR06 submission
         run: |
