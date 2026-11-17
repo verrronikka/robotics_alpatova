@@ -1,28 +1,13 @@
-# ПР04. Параметризуем движение
+# ПР05. Launch, QoS и повтор записи
 
 Ubuntu 24.04.3 LTS под WSL2, ROS 2 Jazzy.
-Продолжен существующий пакет patrol; пакет turtle_bringup сохранён.
 
-## Параметры
+Продолжен пакет patrol из ПР04, сохранён turtle_bringup.
+Новый course_bringup запускает всю систему одной командой.
 
-| Параметр | По умолчанию | Допустимый диапазон |
-| --- | --- | --- |
-| linear_speed | 0.5 м/с | 0–1 |
-| turn_rate | 0.3 рад/с | −1–1 |
-| publish_hz | 10.0 Гц | 1–30 |
+## Окружение и сборка
 
-Значения должны быть конечными. Проверка on-set не меняет активное
-состояние; post-set применяет принятые значения. При изменении частоты
-старый таймер останавливается и удаляется, затем создаётся новый.
-Изменение скорости не пересоздаёт таймер.
-
-Подписка сохраняет последнюю turtlesim/msg/Pose.
-До первой позы публикуется нулевой Twist; затем команда использует
-принятые linear_speed и turn_rate.
-
-## Окружение, сборка и тесты
-
-В свежем терминале Ubuntu:
+В свежем терминале Ubuntu, до подключения install/setup.bash:
 
 ```bash
 source /opt/ros/jazzy/setup.bash
@@ -31,78 +16,97 @@ export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 cd /root/robotics-inspect
 colcon build --symlink-install
 source install/setup.bash
-colcon test --python-testing pytest --event-handlers console_direct+ \
-  --return-code-on-test-failure
-colcon test-result --verbose
 ```
 
-Перед сборкой install/setup.bash не подключается.
-В каждом дополнительном терминале нужны базовая ROS, те же переменные
-окружения и /root/robotics-inspect/install/setup.bash.
+В каждом дополнительном терминале нужны те же настройки окружения
+и подключение install/setup.bash.
 
 ## Запуск
 
-Симулятор и patrol запускаются в отдельных терминалах:
-
 ```bash
-ros2 launch turtle_bringup sim.launch.py
+ros2 launch course_bringup patrol.launch.py \
+  namespace:=robot_a subscriber_reliability:=best_effort record:=false
 ```
 
-```bash
-ros2 run patrol patrol --ros-args -r cmd_vel:=/turtle1/cmd_vel
-```
+Аргументы launch:
 
-В третьем терминале:
+| Аргумент | По умолчанию | Назначение |
+| --- | --- | --- |
+| namespace | robot_a | Пространство имён наших нод |
+| subscriber_reliability | best_effort | reliable или best_effort |
+| record | false | Включение recorder через IfCondition |
+| bag_dir | evidence/pr05/bag | Каталог новой записи |
 
-```bash
-ros2 param set /patrol publish_hz 5.0
-ros2 param set /patrol publish_hz 0.0
-ros2 param get /patrol publish_hz
-ros2 topic hz /turtle1/cmd_vel
-```
+Глобальный /turtlesim публикует /turtle1/pose.
+В /robot_a работают patrol, pose_relay и pose_subscriber.
+Выход cmd_vel ноды patrol переназначен в /turtle1/cmd_vel.
+Входные имена топиков внутри наших нод относительные;
+связи с глобальным turtlesim заданы в launch.
 
-## Подтверждённые результаты
+pose_relay передаёт Pose в /robot_a/sensor_pose с best_effort.
+pose_subscriber считает доставленные сообщения и выводит received.
+Параметр subscriber_reliability применяется при запуске ноды.
 
-- Смена 10→5 Гц изменила измеренную частоту с примерно 10 до 5 Гц.
-- Ноль отклонён; значение осталось 5.0, поток сохранился.
-- linear_speed=0.8 и turn_rate=-0.4 появились в опубликованном Twist.
-- Установка обеих скоростей в 0.0 дала нулевой Twist.
-- Итог тестов: 35 проверок, 0 ошибок, 0 падений, 2 пропуска.
-
-В ветке codex/pr04-frequency-defect, коммит
-1cdbf26f801ca5dbbcd214acd57c2f04033d06d3, временно отключена проверка
-частоты. Запрос нуля вызвал ZeroDivisionError при вычислении периода,
-код выхода 1; patrol исчезла из графа, издателей команд стало 0.
-После возврата на pr04 тот же запрос отклонён, поток около 5 Гц сохранён.
-
-Сервис /clear вернул Empty_Response; поза неподвижной черепахи сохранилась.
-Найден /turtle1/rotate_absolute типа turtlesim/action/RotateAbsolute,
-сервер — /turtlesim.
-
-Сервис возвращает один ответ на запрос. Действие имеет принятие цели,
-обратную связь, итоговый результат и возможность запросить отмену.
-
-## Материалы сдачи и CI
-
-- [Команды, результаты и объяснения](evidence/pr04/parameters.md).
-- [Результаты тестов](evidence/pr04/tests.txt).
-- [Отчёт](evidence/pr04/report.json).
-- [Использование ИИ](AI_USAGE.md).
-- [Материалы предыдущей ПР03](evidence/pr03/demo.md).
-
-GitHub Actions собирает оба пакета, проверяет установленный launch,
-запускает тесты и checker PR04. Результат CI проверяется после push.
-
-Course kit: v1-w10.
-SHA-256: 7a91d388d7bd3def7e058c8da48c32ff27ea6f14dc880a2da169c4102d456874.
+Для новой записи укажите свободный каталог:
 
 ```bash
-python3 .course-kit/v1/tools/check_practice.py PR04 --submission .
+ros2 launch course_bringup patrol.launch.py \
+  namespace:=robot_a subscriber_reliability:=best_effort \
+  record:=true bag_dir:=evidence/pr05/new-bag
 ```
+
+Остановка через Ctrl+C завершает запись и сохраняет metadata.yaml.
+
+## Эксперимент с QoS
+
+При subscriber_reliability:=reliable топик присутствовал,
+но received оставался 0. Диагностика указала несовместимость RELIABILITY.
+Reliable echo завершился по timeout с кодом 124.
+Контрольный best_effort echo получил сообщение с кодом 0.
+
+После выбора best_effort счётчик подписчика рос,
+а best_effort echo получил сообщение с кодом 0.
+
+Сохранённый bag содержит только /robot_a/sensor_pose:
+1222 сообщения turtlesim/msg/Pose за 19.538207750 с, формат MCAP.
+
+Перед replay живой launch остановлен:
+
+```bash
+ros2 bag play evidence/pr05/bag \
+  --qos-profile-overrides-path config/qos-overrides.yaml --loop
+```
+
+Для каждого профиля читателя тот же bag запускался заново.
+Reliable echo дал код 124, best_effort echo — сообщение и код 0.
+В обеих проверках работал только rosbag2_player.
+Хеши bag и YAML совпали; менялось требование читателя.
+
+## Проверки и материалы
+
+```bash
+colcon test --python-testing pytest --event-handlers console_direct+ \
+  --return-code-on-test-failure
+colcon test-result --verbose
+python3 .course-kit/v1/tools/check_practice.py PR05 --submission .
+```
+
+Подтверждённый результат colcon: 38 тестов, 0 ошибок,
+0 падений, 3 пропуска.
+
+- [Диагностика до исправления, включая replay](evidence/pr05/qos-before.txt)
+- [Диагностика после исправления, включая replay](evidence/pr05/qos-after.txt)
+- [Метаданные записи](evidence/pr05/bag-metadata.yaml)
+- [Декларация использования ИИ](AI_USAGE.md)
+- [Материалы ПР04](evidence/pr04/parameters.md)
+
+Course kit: v1-w11.
+SHA-256 архива:
+0b67bfd41448549d21122124b7f49211ba2cd068cc56751871f319eadeb9d0ab
 
 ## Источники
 
-- https://ros.lms.ci.nsu.ru/practices/pr04
-- Лекция 04: стр. 3–6, 10–14, 16–17.
-- https://docs.ros.org/en/jazzy/Concepts/Basic/About-Parameters.html
-- https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html
+- [Задание ПР05](https://ros.lms.ci.nsu.ru/practices/pr05)
+- Лекция 05: страницы 4–6, 8–12, 14.
+- [ROS 2 Jazzy: QoS](https://docs.ros.org/en/jazzy/Concepts/Intermediate/About-Quality-of-Service-Settings.html)
+- [ROS 2 Jazzy: rosbag2 QoS overrides](https://docs.ros.org/en/jazzy/How-To-Guides/Overriding-QoS-Policies-For-Recording-And-Playback.html)

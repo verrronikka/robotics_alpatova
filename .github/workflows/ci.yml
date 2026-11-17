@@ -1,4 +1,4 @@
-name: PR04 checks
+name: PR05 checks
 
 on: [push, pull_request]
 
@@ -6,7 +6,7 @@ permissions:
   contents: read
 
 jobs:
-  pr04:
+  pr05:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
 
@@ -20,8 +20,8 @@ jobs:
     env:
       ROS_DOMAIN_ID: "16"
       RMW_IMPLEMENTATION: rmw_fastrtps_cpp
-      COURSE_KIT_URL: https://ros.lms.ci.nsu.ru/downloads/robotics-course-kit-v1-w10-7a91d388d7bd.tar.gz
-      COURSE_KIT_SHA256: 7a91d388d7bd3def7e058c8da48c32ff27ea6f14dc880a2da169c4102d456874
+      COURSE_KIT_URL: https://ros.lms.ci.nsu.ru/downloads/robotics-course-kit-v1-w11-0b67bfd41448.tar.gz
+      COURSE_KIT_SHA256: 0b67bfd41448549d21122124b7f49211ba2cd068cc56751871f319eadeb9d0ab
 
     steps:
       - name: Install dependencies
@@ -36,6 +36,9 @@ jobs:
             python3-pytest \
             ros-jazzy-turtlesim \
             ros-jazzy-launch-ros \
+            ros-jazzy-ros2bag \
+            ros-jazzy-rosbag2-transport \
+            ros-jazzy-rosbag2-storage-mcap \
             ros-jazzy-ament-copyright \
             ros-jazzy-ament-flake8 \
             ros-jazzy-ament-pep257
@@ -51,8 +54,11 @@ jobs:
           colcon build --symlink-install
           source install/setup.bash
           test -f "$(ros2 pkg prefix turtle_bringup)/share/turtle_bringup/launch/sim.launch.py"
-          python3 -m py_compile src/turtle_bringup/launch/sim.launch.py
+          test -f "$(ros2 pkg prefix course_bringup)/share/course_bringup/launch/patrol.launch.py"
+          ros2 launch course_bringup patrol.launch.py --show-args
           ros2 pkg executables patrol | grep -Fx 'patrol patrol'
+          ros2 pkg executables patrol | grep -Fx 'patrol pose_relay'
+          ros2 pkg executables patrol | grep -Fx 'patrol pose_subscriber'
 
       - name: Run package tests
         run: |
@@ -63,6 +69,13 @@ jobs:
             --return-code-on-test-failure
           colcon test-result --verbose
 
+      - name: Inspect submitted MCAP
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source install/setup.bash
+          ros2 bag info evidence/pr05/bag
+          cmp evidence/pr05/bag/metadata.yaml evidence/pr05/bag-metadata.yaml
+
       - name: Download verified course kit
         run: |
           mkdir -p .course-kit
@@ -71,8 +84,8 @@ jobs:
             "$COURSE_KIT_SHA256" .course-kit/course-kit.tar.gz \
             | sha256sum -c -
           tar -xzf .course-kit/course-kit.tar.gz -C .course-kit
-          test "$(cat .course-kit/v1/VERSION)" = "v1-w10"
+          test "$(cat .course-kit/v1/VERSION)" = "v1-w11"
 
-      - name: Check PR04 submission
+      - name: Check PR05 submission
         run: |
-          python3 .course-kit/v1/tools/check_practice.py PR04 --submission .
+          python3 .course-kit/v1/tools/check_practice.py PR05 --submission .
